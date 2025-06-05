@@ -75,6 +75,7 @@ public class AdminServiceImp implements AdminService {
 
     }
 
+    //TODO: COMRPOBAR QUE EL ADMIN ES ADMIN MEDIANTE EL TOKEN
     @Override
     public UserDTO updateUserPrivileges(UserPrivilegesDTO userPrivilegesDTO) {
 

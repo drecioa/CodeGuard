@@ -26,15 +26,10 @@ public class ExercisesDataSourceConfig implements DataSourceConfig {
 
     @Override
     @Bean(name = "exercisesDataSource")
-    @ConfigurationProperties(prefix = "spring.exercises.datasource")
+    @ConfigurationProperties(prefix = "spring.datasource.exercises")
     public DataSource dataSource(){
 
-        return DataSourceBuilder.create()
-                .url("jdbc:h2:mem:exercises")
-                .username("exercises")
-                .password("")
-                .driverClassName("org.h2.Driver")
-                .build();
+        return DataSourceBuilder.create().build();
     }
 
     @Override

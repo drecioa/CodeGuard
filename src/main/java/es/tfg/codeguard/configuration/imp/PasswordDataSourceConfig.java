@@ -26,14 +26,10 @@ public class PasswordDataSourceConfig implements DataSourceConfig {
 
     @Override
     @Bean(name = "passwordDataSource")
-    @ConfigurationProperties(prefix = "spring.password.datasource")
+    @ConfigurationProperties(prefix = "spring.datasource.passwords")
     public DataSource dataSource(){
-        return DataSourceBuilder.create()
-                .url("jdbc:h2:mem:password")
-                .username("password")
-                .password("")
-                .driverClassName("org.h2.Driver")
-                .build();
+
+        return DataSourceBuilder.create().build();
     }
 
     @Override
