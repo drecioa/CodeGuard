@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+                    configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://dilnwslhwmgze.cloudfront.net", "https://www.aperezp.com", "https://aperezp.com"));
                     configuration.setAllowedMethods(Arrays.asList("*"));
                     configuration.setAllowedHeaders(Arrays.asList("*"));
                     configuration.setExposedHeaders(List.of("Authorization"));
