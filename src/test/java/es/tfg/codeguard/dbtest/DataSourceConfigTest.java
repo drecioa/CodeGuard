@@ -2,6 +2,7 @@ package es.tfg.codeguard.dbtest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
@@ -19,6 +20,18 @@ class DataSourceConfigTest {
 
     @Autowired
     private ApplicationContext context;
+
+    @Value("${spring.datasource.users.jdbc-url}")
+    private String usersJdbcUrl;
+
+    @Value("${spring.datasource.deleted-users.jdbc-url}")
+    private String deletedUsersJdbcUrl;
+
+    @Value("${spring.datasource.passwords.jdbc-url}")
+    private String passwordJdbcUrl;
+
+    @Value("${spring.datasource.exercises.jdbc-url}")
+    private String exercisesJdbcUrl;
 
     @Test
     void correctBeans(){
@@ -55,10 +68,10 @@ class DataSourceConfigTest {
         String passwordURL = ((HikariDataSource) passwordDataSource).getJdbcUrl();
         String exercisesURL = ((HikariDataSource) exercisesDataSource).getJdbcUrl();
 
-        assertEquals("jdbc:h2:mem:users", usersURL);
-        assertEquals("jdbc:h2:mem:deletedUsers", deletedUsersURL);
-        assertEquals("jdbc:h2:mem:password", passwordURL);
-        assertEquals("jdbc:h2:mem:exercises", exercisesURL);
+        assertEquals(usersJdbcUrl, usersURL);
+        assertEquals(deletedUsersJdbcUrl, deletedUsersURL);
+        assertEquals(passwordJdbcUrl, passwordURL);
+        assertEquals(exercisesJdbcUrl, exercisesURL);
     }
 
     @Test
