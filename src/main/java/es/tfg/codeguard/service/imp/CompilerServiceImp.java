@@ -131,7 +131,7 @@ public class CompilerServiceImp implements CompilerService {
         }
 
         //Compilation
-        ProcessBuilder compilation = new ProcessBuilder("javac", "-Xlint:none", javaFile, testFile, "-cp", "lib/junit-jupiter-api-5.11.0.jar");
+        ProcessBuilder compilation = new ProcessBuilder("javac", "-Xlint:none", javaFile, testFile, "-cp", "lib/junit-platform-console-standalone-1.11.3.jar");
         compilation.redirectErrorStream(true);
         Process compilationProcess = compilation.start();
 
