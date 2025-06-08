@@ -131,10 +131,10 @@ public class CompilerServiceImp implements CompilerService {
             bw.write(testCode);
         }
 
-        //Obtener los .jar para la compilaciónç
-        String userdir = System.getProperty("user.dir");
-        String junitJupiterApiJar = Paths.get(userdir, "lib", "junit-jupiter-api-5.11.0.jar").toString();
-        String junitPlatformConsoleJar = Paths.get(userdir, "lib", "junit-platform-console-standalone-1.11.3.jar").toString();
+        //Obtener los .jar para la compilación
+        String userDir = System.getProperty("user.dir");
+        String junitJupiterApiJar = Paths.get(userDir,"lib", "junit-jupiter-api-5.11.0.jar").toString();
+        String junitPlatformConsoleJar = Paths.get(userDir,"lib", "junit-platform-console-standalone-1.11.3.jar").toString();
 
         //Compilation
         ProcessBuilder compilation = new ProcessBuilder("javac", "-Xlint:none", javaFile, testFile, "-cp", junitJupiterApiJar);
