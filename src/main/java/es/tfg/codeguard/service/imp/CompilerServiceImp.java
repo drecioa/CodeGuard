@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -130,8 +131,13 @@ public class CompilerServiceImp implements CompilerService {
             bw.write(testCode);
         }
 
+        //Obtener los .jar para la compilaciónç
+        String userdir = System.getProperty("user.dir");
+        String junitJupiterApiJar = Paths.get(userdir, "lib", "junit-jupiter-api-5.11.0.jar").toString();
+        String junitPlatformConsoleJar = Paths.get(userdir, "lib", "junit-platform-console-standalone-1.11.3.jar").toString();
+
         //Compilation
-        ProcessBuilder compilation = new ProcessBuilder("javac", "-Xlint:none", javaFile, testFile, "-cp", "lib/junit-platform-console-standalone-1.11.3.jar");
+        ProcessBuilder compilation = new ProcessBuilder("javac", "-Xlint:none", javaFile, testFile, "-cp", junitJupiterApiJar);
         compilation.redirectErrorStream(true);
         Process compilationProcess = compilation.start();
 
@@ -154,7 +160,7 @@ public class CompilerServiceImp implements CompilerService {
         //JUnit 5 console execution
         ProcessBuilder testExecutor = new ProcessBuilder("java",
                 "-jar",
-                "../../../../../lib/junit-platform-console-standalone-1.11.3.jar",
+                junitPlatformConsoleJar, //JUnit 5 console jar
                 "execute", //Si no se usa "execute" la consola en la version 1.11.3 da un warning
                 "-cp", //--class-path -cp
                 ".",
